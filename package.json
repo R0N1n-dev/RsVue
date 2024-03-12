@@ -1,0 +1,23 @@
+{
+  "name": "rsvue",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@inkline/inkline": "^4.7.1",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@inkline/config": "^1.9.1",
+    "@inkline/plugin": "^1.5.2",
+    "@rsbuild/core": "^0.4.14",
+    "@rsbuild/plugin-vue": "^0.4.14",
+    "sass": "^1.71.1"
+  }
+}
