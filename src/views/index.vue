@@ -7,6 +7,14 @@
   </div>
 </template>
 
+<script setup>
+import { useHead } from "@unhead/vue";
+
+useHead({
+  title: "Home Page",
+});
+</script>
+
 <style scoped>
 .content {
   display: flex;

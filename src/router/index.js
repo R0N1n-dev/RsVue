@@ -1,5 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/index.vue";
+import { useUserStore } from "../stores/user";
+import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
+
+const requireAuth = async (to, from, next) => {
+  const userStore = useUserStore();
+  userStore.loadingSession = true;
+  const user = await userStore.currentUser();
+  if (user) {
+    next();
+  } else {
+    next("/login");
+  }
+  userStore.loadingSession = false;
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,16 +22,17 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
+      beforeEnter: requireAuth,
       component: HomeView,
     },
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      beforeEnter: requireAuth,
       component: () => import("../views/about.vue"),
     },
+    { path: "/login", component: Login },
+    { path: "/register", component: Register },
   ],
 });
 
